@@ -1,0 +1,19 @@
+import imdb
+
+# Create an instance of the IMDb class
+ia = imdb.IMDb()
+
+# Search for the TV show 'Scrubs'
+series = ia.search_movie('Scrubs')[0]
+
+# Get the full information about the TV show
+ia.update(series)
+
+# Get the cast of the TV show
+ia.update(series, 'episodes')
+
+# Iterate over the cast members and print their names and episode counts
+for actor in series['cast']:
+    actor_name = actor['name']
+    episode_count = len(actor.currentRole['episodes'])
+    print(f"Actor: {actor_name} | Episode count: {episode_count}")
